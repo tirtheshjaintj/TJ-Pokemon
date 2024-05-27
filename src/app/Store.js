@@ -1,6 +1,6 @@
 import {configureStore} from '@reduxjs/toolkit';
-import courseReducer from '../features/courses/courseSlice';
+import beerReducer from '../features/beers/beerSlice';
 
 export const store = configureStore({
-    reducer: courseReducer
+    reducer:  beerReducer
 })

@@ -54,7 +54,9 @@
     transform: rotate(30deg);
     animation: shine 2s infinite linear;
 }
-
+p{
+    font-size: large;
+}
 @keyframes shine {
     0% {
         transform: rotate(30deg) translateX(-200%);
@@ -95,5 +97,5 @@
 
 .card-overlay-content p {
     margin-bottom: 10px;
-    font-size: 14px;
+    font-size: 16px;
 }

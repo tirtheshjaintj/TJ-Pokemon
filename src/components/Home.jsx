@@ -3,27 +3,18 @@ import { useSelector } from 'react-redux';
 import Card from './Card';
 
 export default function Home() {
-  const courses = useSelector(state => state.courses);
+  const beers = useSelector(state => state.beers);
   const [searchTerm, setSearchTerm] = useState('');
-
-  // Function to handle search input changes
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
   };
-
-  // Filter courses based on the search term
-  const filteredCourses = courses.filter(course =>
-    course.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    course.instructor.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredBeers = beers.filter(beer =>
+    beer.name.toLowerCase().includes(searchTerm.toLowerCase()) 
   );
-
-  useEffect(() => {
-    document.title = "TJ Courses";
-  }, []);
 
   return (
     <div className="container mt-5">
-      <h1>All Courses</h1>
+      <h1>All Beers</h1>
       <form className="form-floating mb-4 d-flex" onSubmit={(e) => e.preventDefault()}>
         <input
           type="text"
@@ -34,16 +25,16 @@ export default function Home() {
           onChange={handleSearch}
           required
         />
-        <label htmlFor="search">Search Courses</label>
+        <label htmlFor="search">Search Beer</label>
         <button className="btn btn-outline-secondary" type="button"><i className="fa fa-search" aria-hidden="true"></i></button>
       </form>
       <div className="row" id="my_course">
-        {filteredCourses.length > 0 ? (
-          filteredCourses.map(course => (
-            <Card course={course} key={course.id} />
+        {filteredBeers.length > 0 ? (
+          filteredBeers.map(beer => (
+            <Card beer={beer} key={beer.id} />
           ))
         ) : (
-          <h3 className="text-center w-100">No courses found for "{searchTerm}"</h3>
+          <h3 className="text-center w-100">No Beer found for "{searchTerm}"</h3>
         )}
       </div>
     </div>
