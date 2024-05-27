@@ -1,7 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import fetchBeers from "../data";
 
-const beers=await fetchBeers()
 const initialState = {
   beers:[]
 };

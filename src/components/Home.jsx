@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Card from './Card';
 import { addBeers } from '../features/beers/beerSlice';
-import fetchBeers from '../features/data';
 import axios from 'axios';
 export default function Home() {
   const dispatch=useDispatch();
