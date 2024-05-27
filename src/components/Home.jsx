@@ -1,8 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Card from './Card';
-
+import { addBeers } from '../features/beers/beerSlice';
+import fetchBeers from '../features/data';
+import axios from 'axios';
 export default function Home() {
+  const dispatch=useDispatch();
+  useEffect(()=>{
+    try {
+      axios.get('https://api.sampleapis.com/beers/ale')
+      .then(response => response.data)
+      .then((data)=>{
+        dispatch(addBeers(data));
+      })
+    } catch (error) {
+      console.error('Error fetching the beers:', error);
+      throw error;
+    }        
+  },[]);
+
   const beers = useSelector(state => state.beers);
   const [searchTerm, setSearchTerm] = useState('');
   const handleSearch = (e) => {
@@ -11,6 +27,7 @@ export default function Home() {
   const filteredBeers = beers.filter(beer =>
     beer.name.toLowerCase().includes(searchTerm.toLowerCase()) 
   );
+
 
   return (
     <div className="container mt-5">
