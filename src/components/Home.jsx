@@ -7,8 +7,8 @@ export default function Home() {
   const dispatch=useDispatch();
   useEffect(()=>{
     try {
-      axios.get('https://api.sampleapis.com/beers/ale')
-      .then(response => response.data)
+      axios.get('https://pokeapi.co/api/v2/pokemon?limit=100')
+      .then(response => response.data.results)
       .then((data)=>{
         dispatch(addBeers(data));
       })
@@ -30,7 +30,7 @@ export default function Home() {
 
   return (
     <div className="container mt-5">
-      <h1>All Beers</h1>
+      <h1>All Pokemon</h1>
       <form className="form-floating mb-4 d-flex" onSubmit={(e) => e.preventDefault()}>
         <input
           type="text"
@@ -41,16 +41,16 @@ export default function Home() {
           onChange={handleSearch}
           required
         />
-        <label htmlFor="search">Search Beer</label>
+        <label htmlFor="search">Search Pokemon</label>
         <button className="btn btn-outline-secondary" type="button"><i className="fa fa-search" aria-hidden="true"></i></button>
       </form>
       <div className="row" id="my_course">
         {filteredBeers.length > 0 ? (
-          filteredBeers.map(beer => (
-            <Card beer={beer} key={beer.id} />
+          filteredBeers.map((beer,i) => (
+            <Card beer={beer} i={i} key={beer.name} />
           ))
         ) : (
-          <h3 className="text-center w-100">No Beer found for "{searchTerm}"</h3>
+          <h3 className="text-center w-100">No Pokemon found for "{searchTerm}"</h3>
         )}
       </div>
     </div>
