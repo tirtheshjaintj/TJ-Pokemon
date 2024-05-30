@@ -21,7 +21,10 @@ export default function Home() {
   const beers = useSelector(state => state.beers);
   const [searchTerm, setSearchTerm] = useState('');
   const handleSearch = (e) => {
-    setSearchTerm(e.target.value);
+    const value = e.target.value.trim(); // Remove leading and trailing spaces
+    if (value !== " ") { // Check if value is not only spaces
+      setSearchTerm(value); // Update the state only if value is not only spaces
+    }
   };
   const filteredBeers = beers.filter(beer =>
     beer.name.toLowerCase().includes(searchTerm.toLowerCase()) 
